@@ -1,0 +1,40 @@
+{
+  "name": "gusjasponde.github.io",
+  "version": "1.0.0",
+  "description": "Personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gusjasponde/gusjasponde.github.io.git"
+  },
+  "author": "gusjasponde",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gusjasponde/gusjasponde.github.io/issues"
+  },
+  "homepage": "https://github.com/gusjasponde/gusjasponde.github.io#readme",
+  "dependencies": {
+    "i18next": "^17.3.0",
+    "i18next-browser-languagedetector": "^4.0.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-i18next": "^10.13.1",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "webpack-hot-middleware": "^2.25.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "cypress": "^3.4.1",
+    "eslint": "^6.5.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-mock-store": "^1.5.3",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-merge": "^4.2.2"
+  }
+}
