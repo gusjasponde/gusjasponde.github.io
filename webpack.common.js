@@ -1,8 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-let FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
 	entry: {
@@ -17,15 +16,12 @@ module.exports = {
 		publicPath: '/'
 	},
 	plugins: [
-		new CleanWebpackPlugin([
-			'build/',
-		]),
+		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			title: 'Gustavo Calonico | Github',
 			filename: 'index.html',
 			template: 'src/index.html',
 		}),
-		new FaviconsWebpackPlugin('./src/favicon.png'),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin()
@@ -39,18 +35,9 @@ module.exports = {
 			},
 			{
 				test: /\.(js|jsx)$/,
-				loader: 'babel-loader',
-				exclude: /(node_modules|bower_components)/,
-				options: {
-					plugins: [
-						['transform-runtime', {
-							'polyfill': false,
-							'regenerator': true
-						}],
-						'transform-object-rest-spread',
-						'transform-class-properties'
-					],
-					presets: [ 'react', 'es2015', 'react-hmre']
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader'
 				}
 			},
 			{
