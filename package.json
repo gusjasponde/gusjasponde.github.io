@@ -6,8 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --hot --inline --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "test": "nyc mocha src/**/*.test.js --require @babel/register --timeout=3000",
     "cypress:open": "./node_modules/.bin/cypress open"
   },
   "repository": {
@@ -32,13 +31,14 @@
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "webpack": "^4.0.0",
+    "webpack": "^4.41.0",
     "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "@babel/register": "^7.6.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
@@ -49,6 +49,7 @@
     "eslint-friendly-formatter": "^4.0.1",
     "eslint-plugin-react": "^7.16.0",
     "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-mock-store": "^1.5.3",
     "webpack-cli": "^3.3.9",
