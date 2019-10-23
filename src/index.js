@@ -1,11 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Button from '@material-ui/core/Button';
+import { Provider } from 'react-redux'
+
+import configureStore from './store'
+
+const initialState = {}
+const store = configureStore(initialState)
 
 render(
-	<Button variant="contained" color="primary">
-		Hello world
-	</Button>
+	<Provider store={store}>
+		<div>Hello world</div>
+	</Provider>
 	,
 	document.getElementById('app')
 )
