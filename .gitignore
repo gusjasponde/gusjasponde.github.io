@@ -7,3 +7,4 @@ cypress/integration/examples
 
 # nyc
 .nyc_output
+coverage
