@@ -9,13 +9,13 @@ import LayersIcon from '@material-ui/icons/Layers'
 let mainListItems = (setPage) => {
 	return (
 		<div>
-			<ListItem button >
+			<ListItem button onClick={() => setPage('about')}>
 				<ListItemIcon>
 					<PeopleIcon />
 				</ListItemIcon>
 				<ListItemText primary="About Me" />
 			</ListItem>
-			<ListItem button >
+			<ListItem button onClick={() => setPage('projects')}>
 				<ListItemIcon>
 					<LayersIcon />
 				</ListItemIcon>

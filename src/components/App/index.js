@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import PropTypes from 'prop-types'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Link from '@material-ui/core/Link'
-import Paper from '@material-ui/core/Paper'
 import Drawer from '@material-ui/core/Drawer'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -33,6 +32,9 @@ const useStyles = makeStyles(theme => ({
 	root: {
 		height: '100vh',
 	},
+	toolbar: {
+		paddingRight: 24,
+	},	
 	sidebarPaper: {
 		position: 'relative',
 		whiteSpace: 'nowrap',
@@ -51,6 +53,26 @@ const useStyles = makeStyles(theme => ({
 		overflow: 'auto',
 		flexDirection: 'column',
 	},
+	drawerPaper: {
+		position: 'relative',
+		whiteSpace: 'nowrap',
+		width: drawerSize,
+		transition: theme.transitions.create('width', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.enteringScreen,
+		}),
+	},
+	drawerPaperClose: {
+		overflowX: 'hidden',
+		transition: theme.transitions.create('width', {
+			easing: theme.transitions.easing.sharp,
+			duration: theme.transitions.duration.leavingScreen,
+		}),
+		width: theme.spacing(7),
+		[theme.breakpoints.up('sm')]: {
+			width: theme.spacing(9),
+		},
+	},
 	avatar: {
 		margin: theme.spacing(1),
 		backgroundColor: theme.palette.secondary.main,
@@ -58,7 +80,7 @@ const useStyles = makeStyles(theme => ({
 	
 }))
 
-let App = ({handleDrawerClose}) => {
+let App = ({ drawerOpen, changeState }) => {
 	const classes = useStyles()
 	const listItems = mainListItems()
 
@@ -70,10 +92,10 @@ let App = ({handleDrawerClose}) => {
 				classes={{
 					paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
 				}}
-				open={open}
+				open={drawerOpen}
 			>
 				<div className={classes.toolbarIcon}>
-					<IconButton onClick={handleDrawerClose}>
+					<IconButton onClick={() => changeState({drawerOpen: !drawerOpen})}>
 						<ChevronLeftIcon />
 					</IconButton>
 				</div>
@@ -90,8 +112,8 @@ let App = ({handleDrawerClose}) => {
 }
 
 App.propTypes = {
-	setPage: PropTypes.func,
-	handleDrawerClose: PropTypes.func
+	drawerOpen: PropTypes.bool,
+	changeState: PropTypes.func
 }
 
 export default App
