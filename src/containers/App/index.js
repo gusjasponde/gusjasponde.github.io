@@ -1,23 +1,40 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import App from '../../components/App'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as githubActions from '../../actions/githubActions'
 
 class AppContainer extends React.Component {
 
+	static propTypes = {
+		actions: PropTypes.object,
+		githubRepositories: PropTypes.array
+	}
+
 	constructor(props) {
 		super(props)
-		this.setState = this.setState.bind(this)
+		this.state = {
+			githubRepositories: []
+		}
+	}
+
+	componentDidMount() {
+		this.props.actions.loadGithubProjects()
 	}
 
 	render() {
 		return (
-			<App/>
+			<App
+				githubRepositories={this.props.githubRepositories}/>
 		)
 	}
 }
 
-const mapStateToProps = () =>
-	({})
+const mapStateToProps = (state) =>
+	({ githubRepositories: state.githubReducer })
 
-export default connect(mapStateToProps, null)(AppContainer)
+const mapDispatchToProps = (dispatch) => 
+	({ actions: bindActionCreators(githubActions, dispatch) })
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)

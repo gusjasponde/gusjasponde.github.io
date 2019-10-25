@@ -14,5 +14,8 @@
                 "description": ["Email", "Github", "Linkedin"]
             }
         ]
+    },
+    "error" : { 
+        "github": "Erro ao carregar repositórios do Github"
     }
 }

@@ -91,12 +91,14 @@ const projects = [
 	}
 ]
 
-let App = () => {
+let App = ({ githubRepositories }) => {
 	const { t } = useTranslation()
 	let text = {
 		home: t('home')
 	}
 	const classes = useStyles()
+
+	console.log(githubRepositories)
 
 	return(
 		<Grid container component="main" className={classes.root}>
@@ -191,15 +193,12 @@ let App = () => {
 				</Container>
 				{/* End footer */}
 			</Container>
-			
-			
 		</Grid>
 	)
 }
 
 App.propTypes = {
-	state: PropTypes.object,
-	setState: PropTypes.func
+	githubRepositories: PropTypes.array,
 }
 
 export default App
