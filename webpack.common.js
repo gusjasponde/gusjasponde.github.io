@@ -13,7 +13,6 @@ module.exports = {
 	output: {
 		filename: '[name].[hash].bundle.js',
 		path: path.join(__dirname, 'site'),
-		publicPath: '/'
 	},
 	plugins: [
 		new CleanWebpackPlugin(),
