@@ -4,24 +4,24 @@ import * as githubConstants from '../constants/githubConstants'
 import { useTranslation } from 'react-i18next'
 
 const api = axios.create({
-	baseURL: 'https://api.github.com/users/gusjasponde/',
+	baseURL: 'https://api.github.com/users/gusjasponde',
 	headers: {
 		'Content-Type': 'application/json; charset=utf-8'
 	},
 })
 
-const githubLoadSuccess = (repositories = []) =>
-	({ type: githubConstants.GITHUB_LOAD_SUCCESS, repositories })
+export const githubReposLoadSuccess = (repositories = []) =>
+	({ type: githubConstants.GITHUB_REPOS_LOAD_SUCCESS, repositories })
 
-const githubLoadFail = (repositories = []) =>
-	({ type: githubConstants.GITHUB_LOAD_FAIL, repositories })
+export const githubReposLoadFail = (repositories = []) =>
+	({ type: githubConstants.GITHUB_REPOS_LOAD_FAIL, repositories })
 
 
 export const loadGithubProjects = () => {
 	return (dispatch) => {
 		return api.get('/repos')
 			.then((repositories) => {
-				dispatch(githubLoadSuccess(repositories.data))
+				dispatch(githubReposLoadSuccess(repositories.data))
 			})
 			.catch(() => {
 				const { t } = useTranslation()
@@ -29,8 +29,32 @@ export const loadGithubProjects = () => {
 					error: t('error')
 				}
 
-				toastr.error(text.error.github)
-				dispatch(githubLoadFail())
+				toastr.error(text.error.githubInfo)
+				dispatch(githubReposLoadFail())
+			})
+	}
+}
+
+export const githubInfoLoadSuccess = (info = {}) =>
+	({ type: githubConstants.GITHUB_INFO_LOAD_SUCCESS, info})
+
+export const githubInfoLoadFail = (info = {}) =>
+	({ type: githubConstants.GITHUB_INFO_LOAD_FAIL, info})
+
+export const loadGithubInfo = () => {
+	return (dispatch) => {
+		return api.get('')
+			.then((info) => {
+				dispatch(githubInfoLoadSuccess(info.data))
+			})
+			.catch(() => {
+				const { t } = useTranslation()
+				let text = {
+					error: t('error')
+				}
+
+				toastr.error(text.error.githubRepos)
+				dispatch(githubInfoLoadFail())
 			})
 	}
 }

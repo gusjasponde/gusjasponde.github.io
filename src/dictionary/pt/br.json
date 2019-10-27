@@ -2,20 +2,19 @@
     "home" : {
         "name" : "Gustavo Calonico", 
         "sub" : "Engenheiro de Software no Rio de Janeiro, Brasil",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "description": "Desenvolvedor/Engenheiro de software não graduado com 3 anos de experiência na área. Apaixonado por software livre e open-source, tecnologias descentralizadas e programação. Músico e baterista no meu tempo livre.",
         "sections" : {
+            "projects": "Projetos",
             "about" : "Sobre",
-            "projects" : "Projetos",
-            "contact" : "Contato"
+            "gpg" : "GPG"
         },
-        "footer" : [
-            {
-                "title" : "Contato",
-                "description": ["Email", "Github", "Linkedin"]
-            }
-        ]
+        "footer" : {
+            "contact" : "Contato",
+            "media" : "Redes"
+        }
     },
     "error" : { 
-        "github": "Erro ao carregar repositórios do Github"
+        "githubInfo": "Erro ao carregar informações do Github",
+        "githubRepos": "Error ao carregar repositórios do Github"
     }
 }

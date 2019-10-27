@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import AppBar from '@material-ui/core/AppBar'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -10,13 +9,17 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
 import StarIcon from '@material-ui/icons/StarBorder'
 import Toolbar from '@material-ui/core/Toolbar'
+import AppBar from '@material-ui/core/AppBar'
 import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
-import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
+import GitHubIcon from '@material-ui/icons/GitHub'
+import MailIcon from '@material-ui/icons/Mail'
+import LinkedInIcon from '@material-ui/icons/LinkedIn'
+import Avatar from '@material-ui/core/Avatar'
+import { makeStyles } from '@material-ui/core/styles'
 import { useTranslation } from 'react-i18next'
-import GitHubIcon from '@material-ui/icons/GitHub';
 
 function Copyright() {
 	return (
@@ -49,6 +52,12 @@ const useStyles = makeStyles(theme => ({
 	},
 	appBar: {
 		borderBottom: `1px solid ${theme.palette.divider}`,
+	},
+	avatar: {
+		margin: 'auto',
+		marginBottom: 40,
+		width: 200,
+		height: 200,
 	},
 	toolbar: {
 		flexWrap: 'wrap',
@@ -84,18 +93,15 @@ const useStyles = makeStyles(theme => ({
 			paddingBottom: theme.spacing(6),
 		},
 	},
-}))
-  
-const projects = [
-	{
-		title: 'Project',
-		description: ['Description', 'C++', 'Bitcoin', 'IPFS'],
-		buttonText: '',
-		buttonVariant: 'outlined',
+	icon: {
+		marginRight: 10,
+		marginTop: 10,
+		width: 32,
+		height: 32
 	}
-]
+}))
 
-let App = ({ githubRepositories }) => {
+let App = ({ githubInfo, githubRepositories }) => {
 	const { t } = useTranslation()
 	let text = {
 		home: t('home')
@@ -111,8 +117,6 @@ let App = ({ githubRepositories }) => {
 		}
 	})
 
-	console.log(githubRepositories)
-
 	return(
 		<Grid container component="main" className={classes.root}>
 			<CssBaseline />
@@ -121,14 +125,8 @@ let App = ({ githubRepositories }) => {
 					<Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
 					</Typography>
 					<nav>
-						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
+						<Link variant="button" color="textPrimary" className={classes.link}>
 							{text.home.sections.about}
-						</Link>
-						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
-							{text.home.sections.projects}
-						</Link>
-						<Link variant="button" color="textPrimary" href="#" className={classes.link}>
-							{text.home.sections.contact}
 						</Link>
 					</nav>
 				</Toolbar>
@@ -136,8 +134,9 @@ let App = ({ githubRepositories }) => {
 			<Container component="main">
 				{/* Hero unit */}
 				<Container maxWidth="md" className={classes.heroContent}>
+					<Avatar className={classes.avatar} src={githubInfo.avatar_url} />
 					<Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-						{text.home.name}
+						{githubInfo.name}
 					</Typography>
 					<Typography variant="h5" align="center" color="textSecondary" component="p" gutterBottom>
 						{text.home.sub}
@@ -191,22 +190,29 @@ let App = ({ githubRepositories }) => {
 				{/* Footer */}
 				<Container maxWidth="md" component="footer" className={classes.footer}>
 					<Grid container justify="space-evenly">
-						{text.home.footer.map(footer => (
-							<Grid item xs={1} sm={12} key={footer.title}>
-								<Typography variant="h6" color="textPrimary" gutterBottom>
-									{footer.title}
-								</Typography>
-								<ul>
-									{footer.description.map(item => (
-										<li key={item}>
-											<Link href="#" variant="subtitle1" color="textSecondary">
-												{item}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</Grid>
-						))}
+						<Grid item xs={12} sm={3} key={text.home.footer.contact}>
+							<Typography variant="h5" color="textPrimary" gutterBottom>
+								{text.home.footer.contact}
+							</Typography>
+							<ul>
+								<Link href={`mailto:${githubInfo.email}`} target="_blank" rel="noopener">
+									<MailIcon className={classes.icon}/>
+								</Link>
+							</ul>
+						</Grid>
+						<Grid item xs={12} sm={9} key={text.home.footer.media}>
+							<Typography variant="h6" color="textPrimary" gutterBottom>
+								{text.home.footer.media}
+							</Typography>
+							<ul>
+								<Link href={`https://${githubInfo.blog}`} target="_blank" rel="noopener">
+									<LinkedInIcon className={classes.icon}/>
+								</Link>
+								<Link href={githubInfo.html_url} target="_blank" rel="noopener">
+									<GitHubIcon className={classes.icon}/>
+								</Link>
+							</ul>
+						</Grid>
 					</Grid>
 					<Box mt={5}>
 						<Copyright />
@@ -219,7 +225,8 @@ let App = ({ githubRepositories }) => {
 }
 
 App.propTypes = {
-	githubRepositories: PropTypes.array,
+	githubInfo: PropTypes.object,
+	githubRepositories: PropTypes.array
 }
 
 export default App

@@ -9,30 +9,32 @@ class AppContainer extends React.Component {
 
 	static propTypes = {
 		actions: PropTypes.object,
-		githubRepositories: PropTypes.array
+		github: PropTypes.object
 	}
 
 	constructor(props) {
 		super(props)
 		this.state = {
-			githubRepositories: []
+			github: {}
 		}
 	}
 
 	componentDidMount() {
 		this.props.actions.loadGithubProjects()
+		this.props.actions.loadGithubInfo()
 	}
 
 	render() {
 		return (
 			<App
-				githubRepositories={this.props.githubRepositories}/>
+				githubInfo={this.props.github.info}
+				githubRepositories={this.props.github.repositories}/>
 		)
 	}
 }
 
 const mapStateToProps = (state) =>
-	({ githubRepositories: state.githubReducer })
+	({ github: state.githubReducer })
 
 const mapDispatchToProps = (dispatch) => 
 	({ actions: bindActionCreators(githubActions, dispatch) })
