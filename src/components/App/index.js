@@ -16,6 +16,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import { useTranslation } from 'react-i18next'
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 function Copyright() {
 	return (
@@ -61,6 +62,9 @@ const useStyles = makeStyles(theme => ({
 	heroContent: {
 		padding: theme.spacing(10, 0, 8),
 	},
+	projectCards: {
+		padding: theme.spacing(4, 0, 4)
+	},
 	cardHeader: {
 		backgroundColor: theme.palette.grey[200],
 	},
@@ -97,6 +101,15 @@ let App = ({ githubRepositories }) => {
 		home: t('home')
 	}
 	const classes = useStyles()
+	const projects = githubRepositories.map((project) => {
+		return {
+			title: project.name,
+			description: [ project.description ],
+			language: [ project.language ],
+			buttonText: '',
+			buttonVariant: 'outlined',
+		}
+	})
 
 	console.log(githubRepositories)
 
@@ -133,8 +146,11 @@ let App = ({ githubRepositories }) => {
 						{text.home.description}
 					</Typography>
 				</Container>
-				<Container maxWidth="md" component="main">
-					<Grid container spacing={5} >
+				<Container maxWidth="md">
+					<Typography variant="h2" align="center" color="textPrimary" gutterBottom>
+						{text.home.sections.projects}
+					</Typography>
+					<Grid container spacing={5} className={classes.projectCards}>
 						{projects.map(project => (
 							// Enterprise card is full width at sm breakpoint
 							<Grid item key={project.title} xs={12} sm={project.title === 'Enterprise' ? 12 : 6} md={4}>
@@ -150,6 +166,11 @@ let App = ({ githubRepositories }) => {
 									<CardContent>
 										<ul>
 											{project.description.map(line => (
+												<Typography color="textSecondary" component="li" variant="subtitle1" align="center" key={line}>
+													{line}
+												</Typography>
+											))}
+											{project.language.map(line => (
 												<Typography component="li" variant="subtitle1" align="center" key={line}>
 													{line}
 												</Typography>
@@ -158,7 +179,7 @@ let App = ({ githubRepositories }) => {
 									</CardContent>
 									<CardActions>
 										<Button fullWidth variant={project.buttonVariant} color="primary">
-											{project.buttonText}
+											<GitHubIcon />
 										</Button>
 									</CardActions>
 								</Card>
