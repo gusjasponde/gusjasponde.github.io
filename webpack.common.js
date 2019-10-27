@@ -18,7 +18,7 @@ module.exports = {
 	plugins: [
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
-			title: 'Gustavo Calonico | Github',
+			title: 'Gustavo Jasponde | Github',
 			filename: 'index.html',
 			template: 'src/index.html',
 		}),
