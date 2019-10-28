@@ -126,10 +126,10 @@ let App = ({ githubInfo, githubRepositories }) => {
 					<Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
 					</Typography>
 					<nav>
-						<Link variant="button" color="textPrimary" className={classes.link}>
+						<Link id="section-button" variant="button" color="textPrimary" className={classes.link}>
 							{text.home.sections.about}
 						</Link>
-						<Link variant="button" color="textPrimary" href="/gusjasponde.pgp" target="_blank" rel="noopener" className={classes.link}>
+						<Link id="gpg-button" variant="button" color="textPrimary" href="gusjasponde.pgp" rel="noopener" className={classes.link}>
 							{text.home.sections.gpg}
 						</Link>
 					</nav>
