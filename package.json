@@ -8,7 +8,8 @@
     "build": "webpack --config webpack.prod.js",
     "deploy": "gh-pages -d build",
     "test": "nyc mocha src/**/*.test.js --require @babel/register --timeout=3000",
-    "cypress:open": "./node_modules/.bin/cypress open"
+    "cypress:open": "./node_modules/.bin/cypress open",
+    "cypress:run": "./node_modules/.bin/cypress run"
   },
   "repository": {
     "type": "git",
