@@ -128,7 +128,7 @@ let App = ({ githubInfo, githubRepositories }) => {
 						<Link variant="button" color="textPrimary" className={classes.link}>
 							{text.home.sections.about}
 						</Link>
-						<Link variant="button" color="textPrimary" href="/public.asc" className={classes.link}>
+						<Link variant="button" color="textPrimary" href="/gusjasponde.pgp" target="_blank" rel="noopener" className={classes.link}>
 							{text.home.sections.gpg}
 						</Link>
 					</nav>
