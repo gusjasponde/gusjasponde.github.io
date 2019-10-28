@@ -114,6 +114,7 @@ let App = ({ githubInfo, githubRepositories }) => {
 			language: [ project.language ],
 			buttonText: '',
 			buttonVariant: 'outlined',
+			url: project.html_url
 		}
 	})
 
@@ -149,7 +150,7 @@ let App = ({ githubInfo, githubRepositories }) => {
 					</Typography>
 				</Container>
 				<Container maxWidth="md">
-					<Typography variant="h2" align="center" color="textPrimary" gutterBottom>
+					<Typography variant="h3" align="center" color="textPrimary" gutterBottom>
 						{text.home.sections.projects}
 					</Typography>
 					<Grid container spacing={5} className={classes.projectCards}>
@@ -180,7 +181,7 @@ let App = ({ githubInfo, githubRepositories }) => {
 										</ul>
 									</CardContent>
 									<CardActions>
-										<Button fullWidth variant={project.buttonVariant} color="primary">
+										<Button  href={project.url} target="_blank" rel="noopener" fullWidth variant={project.buttonVariant} color="primary">
 											<GitHubIcon />
 										</Button>
 									</CardActions>
@@ -204,7 +205,7 @@ let App = ({ githubInfo, githubRepositories }) => {
 							</ul>
 						</Grid>
 						<Grid item xs={12} sm={9} key={text.home.footer.media}>
-							<Typography variant="h6" color="textPrimary" gutterBottom>
+							<Typography variant="h5" color="textPrimary" gutterBottom>
 								{text.home.footer.media}
 							</Typography>
 							<ul>
