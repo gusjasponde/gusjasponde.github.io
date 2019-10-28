@@ -128,6 +128,9 @@ let App = ({ githubInfo, githubRepositories }) => {
 						<Link variant="button" color="textPrimary" className={classes.link}>
 							{text.home.sections.about}
 						</Link>
+						<Link variant="button" color="textPrimary" href="/public.asc" className={classes.link}>
+							{text.home.sections.gpg}
+						</Link>
 					</nav>
 				</Toolbar>
 			</AppBar>
