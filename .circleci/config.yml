@@ -33,5 +33,11 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      # run eslint format on code
+      - run: npm run eslint
+
       # run unit tests
       - run: npm run test
+
+      # run cypress functional tests
+      - run: npm run cypress:run

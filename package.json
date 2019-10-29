@@ -9,7 +9,8 @@
     "deploy": "gh-pages -d build",
     "test": "nyc mocha src/**/*.test.js --require @babel/register --timeout=3000",
     "cypress:open": "./node_modules/.bin/cypress open",
-    "cypress:run": "./node_modules/.bin/cypress run"
+    "cypress:run": "./node_modules/.bin/cypress run",
+    "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' src/ cypress/ webpack.common.js webpack.dev.js webpack.prod.js"
   },
   "repository": {
     "type": "git",
