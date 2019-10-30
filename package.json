@@ -11,7 +11,7 @@
     "cy:ci": "start-server-and-test start http://localhost:3000 cy:record",
     "cy:open": "./node_modules/.bin/cypress open",
     "cy:run": "./node_modules/.bin/cypress run",
-    "cy:record": "./node_modules/.bin/cypress run --record --key 357b87b3-cb66-41f1-abc3-86e26ebaab51",
+    "cy:record": "./node_modules/.bin/cypress run --record",
     "eslint": "eslint --format 'node_modules/eslint-friendly-formatter' src/ cypress/ webpack.common.js webpack.dev.js webpack.prod.js"
   },
   "repository": {
