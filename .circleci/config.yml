@@ -1,0 +1,41 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+
+    working_directory: ~/site
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+            - v1-deps-{{ .Branch }}
+            - v1-deps
+
+      - run: npm install
+
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "package.json" }}
+          # cache NPM modules and the folder with the Cypress binary
+          paths:
+            - node_modules
+            - ~/.npm
+            - ~/.cache
+
+      # run eslint format on code
+      - run: npm run eslint
+
+      # run unit tests
+      - run: npm run test
+
+      # run cypress 
+      - run: npm run cy:ci
+
+      - store_artifacts:
+          path: cypress/screenshots

@@ -6,7 +6,11 @@ module.exports = {
 		'node': true,
 		'jest': true
 	},
-	'extends': ['eslint:recommended', 'plugin:react/recommended'],
+	'extends': [
+		'eslint:recommended',
+		'plugin:react/recommended',
+		'plugin:cypress/recommended'
+	],
 	'globals': {
 		'Atomics': 'readonly',
 		'SharedArrayBuffer': 'readonly'
@@ -20,7 +24,8 @@ module.exports = {
 		'sourceType': 'module'
 	},
 	'plugins': [
-		'react'
+		'react',
+		'cypress'
 	],
 	'rules': {
 		'indent': [
