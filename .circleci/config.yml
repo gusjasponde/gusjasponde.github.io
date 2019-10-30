@@ -1,21 +1,13 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: circleci/node:latest
+      - image: cypress/base:8
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/repo
-
+    working_directory: ~/site
     steps:
       - checkout
 
@@ -39,5 +31,8 @@ jobs:
       # run unit tests
       - run: npm run test
 
-      # run cypress functional tests
-      - run: npm run cypress:run
+      # run cypress 
+      - run: npm run cy
+
+      - store_artifacts:
+          path: cypress/screenshots
