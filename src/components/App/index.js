@@ -36,9 +36,6 @@ function Copyright() {
 
 const useStyles = makeStyles(theme => ({
 	'@global': {
-		body: {
-			backgroundColor: theme.palette.common.white,
-		},
 		ul: {
 			margin: 0,
 			padding: 0,
@@ -47,11 +44,8 @@ const useStyles = makeStyles(theme => ({
 			listStyle: 'none',
 		},
 	},
-	root: {
-		display: 'flex'
-	},
 	appBar: {
-		borderBottom: `1px solid ${theme.palette.divider}`,
+		borderBottom: `1px solid ${theme.palette.text.divider}`,
 	},
 	avatar: {
 		margin: 'auto',
@@ -72,19 +66,19 @@ const useStyles = makeStyles(theme => ({
 		padding: theme.spacing(10, 0, 8),
 	},
 	projectCards: {
-		padding: theme.spacing(4, 0, 4)
+		padding: theme.spacing(4, 0, 4),
 	},
 	cardHeader: {
-		backgroundColor: theme.palette.grey[200],
+		borderBottom: `1px solid ${theme.palette.text.divider}`,
 	},
 	cardProject: {
-		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'baseline',
-		marginBottom: theme.spacing(2),
+		marginBottom: theme.spacing(3),
+		border: `1px solid ${theme.palette.primary.contrastText}`,
 	},
 	footer: {
-		borderTop: `1px solid ${theme.palette.divider}`,
+		borderTop: `1px solid ${theme.palette.text.divider}`,
 		marginTop: theme.spacing(8),
 		paddingTop: theme.spacing(3),
 		paddingBottom: theme.spacing(3),
@@ -121,7 +115,7 @@ let App = ({ githubInfo, githubRepositories }) => {
 	return(
 		<Grid container component="main" className={classes.root}>
 			<CssBaseline />
-			<AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+			<AppBar position="static" elevation={0} className={classes.appBar}>
 				<Toolbar className={classes.toolbar}>
 					<Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
 					</Typography>
@@ -129,7 +123,7 @@ let App = ({ githubInfo, githubRepositories }) => {
 						<Link id="section-button" variant="button" color="textPrimary" className={classes.link}>
 							{text.home.sections.about}
 						</Link>
-						<Link id="gpg-button" variant="button" color="textPrimary" href="gusjasponde.pgp" rel="noopener" className={classes.link}>
+						<Link id="gpg-button" variant="button" color="textPrimary" href="gusjasponde.asc" rel="noopener" className={classes.link}>
 							{text.home.sections.gpg}
 						</Link>
 					</nav>
@@ -157,11 +151,11 @@ let App = ({ githubInfo, githubRepositories }) => {
 						{projects.map(project => (
 							// Enterprise card is full width at sm breakpoint
 							<Grid item key={project.title} xs={12} sm={project.title === 'Enterprise' ? 12 : 6} md={4}>
-								<Card>
+								<Card className={classes.cardProject}>
 									<CardHeader
 										title={project.title}
 										subheader={project.subheader}
-										titleTypographyProps={{ align: 'center' }}
+										titleTypographyProps={{ align: 'center', variant: 'h6' }}
 										subheaderTypographyProps={{ align: 'center' }}
 										action={project.title === 'Pro' ? <StarIcon /> : null}
 										className={classes.cardHeader}
@@ -181,7 +175,7 @@ let App = ({ githubInfo, githubRepositories }) => {
 										</ul>
 									</CardContent>
 									<CardActions>
-										<Button  href={project.url} target="_blank" rel="noopener" fullWidth variant={project.buttonVariant} color="primary">
+										<Button  href={project.url} target="_blank" rel="noopener" fullWidth variant={project.buttonVariant} color="textPrimary">
 											<GitHubIcon />
 										</Button>
 									</CardActions>
@@ -199,7 +193,7 @@ let App = ({ githubInfo, githubRepositories }) => {
 								{text.home.footer.contact}
 							</Typography>
 							<ul>
-								<Link href={`mailto:${githubInfo.email}`} target="_blank" rel="noopener">
+								<Link href={`mailto:${githubInfo.email}`} target="_blank" rel="noopener" color="textPrimary">
 									<MailIcon className={classes.icon}/>
 								</Link>
 							</ul>
@@ -209,10 +203,10 @@ let App = ({ githubInfo, githubRepositories }) => {
 								{text.home.footer.media}
 							</Typography>
 							<ul>
-								<Link href={`https://${githubInfo.blog}`} target="_blank" rel="noopener">
+								<Link href={`https://${githubInfo.blog}`} target="_blank" rel="noopener" color="textPrimary">
 									<LinkedInIcon className={classes.icon}/>
 								</Link>
-								<Link href={githubInfo.html_url} target="_blank" rel="noopener">
+								<Link href={githubInfo.html_url} target="_blank" rel="noopener" color="textPrimary">
 									<GitHubIcon className={classes.icon}/>
 								</Link>
 							</ul>
