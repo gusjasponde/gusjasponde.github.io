@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.js')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+var path = require('path')
 
 module.exports = merge(common, {
 	optimization: {
@@ -25,4 +26,8 @@ module.exports = merge(common, {
 			},
 		})
 	],
+	output: {
+		filename: '[name].[hash].bundle.js',
+		path: path.join(__dirname, '/'),
+	}
 })

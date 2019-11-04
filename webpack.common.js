@@ -1,7 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
@@ -16,7 +15,6 @@ module.exports = {
 		path: path.join(__dirname, 'site'),
 	},
 	plugins: [
-		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			title: 'Gustavo Jasponde | Github',
 			filename: 'index.html',
@@ -26,7 +24,7 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new CopyWebpackPlugin([
-			{ from: 'gusjasponde.pgp' }
+			{ from: 'gusjasponde.asc' }
 		])
 	],
 	module: {
