@@ -9,4 +9,3 @@ cypress/videos
 
 # nyc
 .nyc_output
-coverage
