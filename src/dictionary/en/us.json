@@ -1,8 +1,8 @@
 {
     "home" : {
         "name" : "Gustavo Calonico", 
-        "sub" : "Software Engineer at Rio de Janeiro, Brazil",
-        "description": "Undergraduate software developer/engineer with 3 years experience on the market. Passionate about free open-source software, decentralized technologies and programming. Musician and drummer on my free time.",
+        "sub" : "Software Engineer living in Rio de Janeiro, Brazil",
+        "description": "Undergraduate software engineer with 3 years experience with software development. Passionate about free open-source software, decentralized technologies and programming. Musician and drummer on my free time.",
         "sections" : {
             "projects": "Projects",
             "language": "Language",
