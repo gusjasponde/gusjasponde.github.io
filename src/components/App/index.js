@@ -18,8 +18,11 @@ import GitHubIcon from '@material-ui/icons/GitHub'
 import MailIcon from '@material-ui/icons/Mail'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import Avatar from '@material-ui/core/Avatar'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 import { makeStyles } from '@material-ui/core/styles'
 import { useTranslation } from 'react-i18next'
+import i18n from 'i18next'
 
 function Copyright() {
 	return (
@@ -97,9 +100,25 @@ const useStyles = makeStyles(theme => ({
 
 let App = ({ githubInfo, githubRepositories }) => {
 	const { t } = useTranslation()
-	let text = {
-		home: t('home')
+	let home = t('home')
+	let languages = t('languages')
+
+	const [anchorEl, setAnchorEl] = React.useState(null)
+
+	const handleLanguageClick = (event) => {
+		setAnchorEl(event.currentTarget)
 	}
+
+	const handleMenuItemClick = (event, value) => {
+		i18n.changeLanguage(value)
+		setAnchorEl(null)
+	}
+
+	const handleClose = () => {
+		setAnchorEl(null)
+	}
+
+
 	const classes = useStyles()
 	const projects = githubRepositories.map((project) => {
 		return {
@@ -120,11 +139,28 @@ let App = ({ githubInfo, githubRepositories }) => {
 					<Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
 					</Typography>
 					<nav>
-						<Link id="section-button" variant="button" color="textPrimary" className={classes.link}>
-							{text.home.sections.about}
-						</Link>
+						<Button aria-controls="language-menu" aria-haspopup="true" onClick={handleLanguageClick}>
+							{ home.sections.language } 
+						</Button>
+						<Menu
+							id="language-menu"
+							anchorEl={anchorEl}
+							keepMounted
+							open={Boolean(anchorEl)}
+							onClose={handleClose}
+						>
+							{
+								languages.map((item, index) => (
+									<MenuItem 
+										key={index}
+										onClick={(e) => handleMenuItemClick(e, item.key)}>
+										{item.name}
+									</MenuItem>
+								))
+							}
+						</Menu>
 						<Link id="gpg-button" variant="button" color="textPrimary" href="gusjasponde.asc" rel="noopener" className={classes.link}>
-							{text.home.sections.gpg}
+							{home.sections.gpg}
 						</Link>
 					</nav>
 				</Toolbar>
@@ -137,15 +173,15 @@ let App = ({ githubInfo, githubRepositories }) => {
 						{githubInfo.name}
 					</Typography>
 					<Typography variant="h5" align="center" color="textSecondary" component="p" gutterBottom>
-						{text.home.sub}
+						{home.sub}
 					</Typography>
 					<Typography align="center" color="textSecondary" component="p">
-						{text.home.description}
+						{home.description}
 					</Typography>
 				</Container>
 				<Container maxWidth="md">
 					<Typography variant="h3" align="center" color="textPrimary" gutterBottom>
-						{text.home.sections.projects}
+						{home.sections.projects}
 					</Typography>
 					<Grid container spacing={5} className={classes.projectCards}>
 						{projects.map(project => (
@@ -188,9 +224,9 @@ let App = ({ githubInfo, githubRepositories }) => {
 				{/* Footer */}
 				<Container maxWidth="md" component="footer" className={classes.footer}>
 					<Grid container justify="space-evenly">
-						<Grid item xs={12} sm={3} key={text.home.footer.contact}>
+						<Grid item xs={12} sm={3} key={home.footer.contact}>
 							<Typography variant="h5" color="textPrimary" gutterBottom>
-								{text.home.footer.contact}
+								{home.footer.contact}
 							</Typography>
 							<ul>
 								<Link href={`mailto:${githubInfo.email}`} target="_blank" rel="noopener" color="textPrimary">
@@ -198,9 +234,9 @@ let App = ({ githubInfo, githubRepositories }) => {
 								</Link>
 							</ul>
 						</Grid>
-						<Grid item xs={12} sm={9} key={text.home.footer.media}>
+						<Grid item xs={12} sm={9} key={home.footer.media}>
 							<Typography variant="h5" color="textPrimary" gutterBottom>
-								{text.home.footer.media}
+								{home.footer.media}
 							</Typography>
 							<ul>
 								<Link href={`https://${githubInfo.blog}`} target="_blank" rel="noopener" color="textPrimary">
@@ -224,7 +260,10 @@ let App = ({ githubInfo, githubRepositories }) => {
 
 App.propTypes = {
 	githubInfo: PropTypes.object,
-	githubRepositories: PropTypes.array
+	githubRepositories: PropTypes.array,
+	anchorEl: PropTypes.object,
+	handleLanguageClick: PropTypes.func,
+	handleClose: PropTypes.func
 }
 
 export default App

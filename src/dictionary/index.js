@@ -22,7 +22,7 @@ i18n
 				br: ptBr
 			}
 		},
-		lng: 'pt',
+		lng: 'en',
 		fallbackLng: 'en',
 		debug: true,
 		interpolation: {
