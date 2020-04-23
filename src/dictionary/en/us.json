@@ -5,7 +5,7 @@
         "description": "Undergraduate software developer/engineer with 3 years experience on the market. Passionate about free open-source software, decentralized technologies and programming. Musician and drummer on my free time.",
         "sections" : {
             "projects": "Projects",
-            "about" : "About",
+            "language": "Language",
             "gpg" : "GPG"
         },
         "footer" : {
@@ -16,5 +16,9 @@
     "error" : {
         "githubInfo": "Error loading Github info",
         "githubRepos": "Error loading Github repositories"
-    }
+    },
+    "languages": [
+        { "key": "pt-br", "name": "Portuguese (Brazil)"       },
+        { "key": "en-us", "name": "English (United States)"   }
+    ]
 }
