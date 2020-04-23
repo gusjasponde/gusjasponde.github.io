@@ -18,7 +18,7 @@
         "githubRepos": "Error loading Github repositories"
     },
     "languages": [
-        { "key": "pt-br", "name": "Portuguese (Brazil)"       },
+        { "key": "pt-br", "name": "Português (Brasil)"       },
         { "key": "en-us", "name": "English (United States)"   }
     ]
 }

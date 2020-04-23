@@ -16,5 +16,9 @@
     "error" : { 
         "githubInfo": "Erro ao carregar informações do Github",
         "githubRepos": "Error ao carregar repositórios do Github"
-    }
+    },
+    "languages": [
+        { "key": "pt-br", "name": "Português (Brasil)"       },
+        { "key": "en-us", "name": "English (United States)"   }
+    ]
 }
