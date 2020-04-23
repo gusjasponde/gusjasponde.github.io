@@ -24,7 +24,7 @@ describe('Home Page', () => {
 		cy.contains('English (United States)').click()
 
 		cy.contains('Gustavo Jasponde')
-		cy.contains('Software Engineer at Rio de Janeiro, Brazil')
+		cy.contains('Software Engineer living in Rio de Janeiro, Brazil')
 		cy.contains('Brazil')
 		cy.contains('Projects')
 		cy.contains('Contact')
@@ -39,7 +39,7 @@ describe('Home Page', () => {
 		cy.contains('English (United States)').click()
 
 		cy.contains('Gustavo Jasponde')
-		cy.contains('Software Engineer at Rio de Janeiro, Brazil')
+		cy.contains('Software Engineer living in Rio de Janeiro, Brazil')
 		cy.contains('Brazil')
 		cy.contains('Projects')
 		cy.contains('Contact')
