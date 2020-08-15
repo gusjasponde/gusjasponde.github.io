@@ -6,7 +6,7 @@
         "sections" : {
             "projects": "Projetos",
             "language": "Idioma",
-            "gpg" : "GPG"
+            "gpg" : "PGP"
         },
         "footer" : {
             "contact" : "Contato",
