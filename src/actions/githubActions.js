@@ -58,3 +58,27 @@ export const loadGithubInfo = () => {
 			})
 	}
 }
+
+export const githubGPGLoadSuccess = (keys = []) => 
+	({ type: githubConstants.GITHUB_GPG_LOAD_SUCCESS, keys})
+
+export const githubGPGLoadFail = (keys = []) => 
+	({ type: githubConstants.GITHUB_GPG_LOAD_FAIL, keys})
+
+export const loadGPGInfo = () => {
+	return (dispatch) => {
+		return api.get('/gpg_keys')
+			.then((keys) => {
+				dispatch(githubGPGLoadSuccess(keys.data))
+			})
+			.catch(() => {
+				const { t } = useTranslation()
+				let text = {
+					error: t('error')
+				}
+
+				toastr.error(text.error.githubRepos)
+				dispatch(githubGPGLoadFail())
+			})
+	}
+}

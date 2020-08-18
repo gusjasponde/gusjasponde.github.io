@@ -15,7 +15,8 @@
     },
     "error" : { 
         "githubInfo": "Erro ao carregar informações do Github",
-        "githubRepos": "Error ao carregar repositórios do Github"
+        "githubRepos": "Error ao carregar repositórios do Github",
+        "githubGpg": "Erro ao carregar as chaves GPG"
     },
     "languages": [
         { "key": "pt-br", "name": "Português (Brasil)"       },

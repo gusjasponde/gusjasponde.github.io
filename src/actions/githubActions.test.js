@@ -2,7 +2,7 @@
 import 'mocha'
 import { expect } from 'chai'
 
-import { githubReposLoadSuccess, githubReposLoadFail , githubInfoLoadSuccess, githubInfoLoadFail } from './githubActions'
+import { githubReposLoadSuccess, githubReposLoadFail , githubInfoLoadSuccess, githubInfoLoadFail, githubGPGLoadSuccess, githubGPGLoadFail } from './githubActions'
 import * as constants from '../constants/githubConstants'
 
 describe('githubActions', () => {
@@ -32,5 +32,19 @@ describe('githubActions', () => {
 
 		expect(result.type).to.be.equal(constants.GITHUB_INFO_LOAD_FAIL)
 		expect(result.info).to.be.deep.equal({})
+	})
+
+	it('should dispatch gpg load success', () => {
+		const result = githubGPGLoadSuccess(['key'])
+
+		expect(result.type).to.be.equal(constants.GITHUB_GPG_LOAD_SUCCESS)
+		expect(result.keys).to.be.deep.equal(['key'])
+	})
+
+	it('should dispatch gpg load fail', () => {
+		const result = githubGPGLoadFail()
+
+		expect(result.type).to.be.equal(constants.GITHUB_GPG_LOAD_FAIL)
+		expect(result.keys).to.be.deep.equal([])
 	})
 })

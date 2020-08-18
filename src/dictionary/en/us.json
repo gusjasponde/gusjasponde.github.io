@@ -15,7 +15,8 @@
     },
     "error" : {
         "githubInfo": "Error loading Github info",
-        "githubRepos": "Error loading Github repositories"
+        "githubRepos": "Error loading Github repositories",
+        "githubGpg": "Error loading GPG keys"
     },
     "languages": [
         { "key": "pt-br", "name": "Português (Brasil)"       },
