@@ -17,20 +17,29 @@ class AppContainer extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			github: {}
+			github: {},
+			gpgModalOpen: false,
 		}
+	}
+
+	toggleGPGModal(){
+		this.setState({gpgModalOpen: !this.state.gpgModalOpen})
 	}
 
 	componentDidMount() {
 		this.props.actions.loadGithubProjects()
 		this.props.actions.loadGithubInfo()
+		this.props.actions.loadGPGInfo()
 	}
 
 	render() {
 		return (
 			<App
 				githubInfo={this.props.github.info}
-				githubRepositories={this.props.github.repositories}/>
+				githubRepositories={this.props.github.repositories}
+				gpgKeys={this.props.github.keys}
+				gpgModalOpen={this.state.gpgModalOpen}
+				toggleGPGModal={this.toggleGPGModal.bind(this)}/>
 		)
 	}
 }

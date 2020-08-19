@@ -6,7 +6,12 @@
         "sections" : {
             "projects": "Projects",
             "language": "Language",
-            "gpg" : "PGP"
+            "gpg" : {
+                "name": "GPG",
+                "copy": "Copy",
+                "download": "Download",
+                "expired" : "(expired)"
+            }
         },
         "footer" : {
             "contact" : "Contact",

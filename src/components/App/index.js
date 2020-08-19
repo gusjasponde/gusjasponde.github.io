@@ -20,9 +20,11 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import Avatar from '@material-ui/core/Avatar'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import Dialog from '@material-ui/core/Dialog'
 import { makeStyles } from '@material-ui/core/styles'
 import { useTranslation } from 'react-i18next'
 import i18n from 'i18next'
+import GpgKey from './gpgKey'
 
 function Copyright() {
 	return (
@@ -80,6 +82,17 @@ const useStyles = makeStyles(theme => ({
 		marginBottom: theme.spacing(3),
 		border: `1px solid ${theme.palette.primary.contrastText}`,
 	},
+	gpgDialog: {
+		display:'flex',
+		alignItems:'center',
+		justifyContent:'center',
+	},
+	gpgDialogContent: {
+		backgroundColor: theme.palette.background.paper,
+		border: '2px solid #000',
+		boxShadow: theme.shadows[5],
+		padding: theme.spacing(3),
+	},
 	footer: {
 		borderTop: `1px solid ${theme.palette.text.divider}`,
 		marginTop: theme.spacing(8),
@@ -98,7 +111,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }))
 
-let App = ({ githubInfo, githubRepositories }) => {
+let App = ({ githubInfo, githubRepositories, gpgKeys, gpgModalOpen, toggleGPGModal}) => {
 	const { t } = useTranslation()
 	let home = t('home')
 	let languages = t('languages')
@@ -131,6 +144,18 @@ let App = ({ githubInfo, githubRepositories }) => {
 		}
 	})
 
+	const keys = gpgKeys.map((key) => {
+		var expDate = new Date(key.expires_at)
+		var today = new Date()
+		return {
+			id: key.key_id,
+			raw: key.raw_key,
+			emails: key.emails,
+			expired: !key.expires_at ? true : today > expDate,
+			expires: !key.expires_at ? null : expDate
+		}
+	})
+
 	return(
 		<Grid container component="main" className={classes.root}>
 			<CssBaseline />
@@ -159,14 +184,24 @@ let App = ({ githubInfo, githubRepositories }) => {
 								))
 							}
 						</Menu>
-						<Link id="gpg-button" variant="button" color="textPrimary" href="gusjasponde.asc" rel="noopener" className={classes.link}>
-							{home.sections.gpg}
-						</Link>
+						<Button id="gpg-button" variant="button" color="textPrimary" onClick={toggleGPGModal}>
+							{home.sections.gpg.name}
+						</Button>
 					</nav>
 				</Toolbar>
 			</AppBar>
 			<Container component="main">
 				{/* Hero unit */}
+				<Dialog
+					fullWidth
+					open={gpgModalOpen}
+					onClose={toggleGPGModal}
+					className={classes.gpgDialog}
+				>
+					<Container className={classes.gpgDialogContent}>
+						{keys.map((gpg, index) => { return <GpgKey key={index} gpg={gpg}/>})}
+					</Container>
+				</Dialog>
 				<Container maxWidth="md" className={classes.heroContent}>
 					<Avatar className={classes.avatar} src={githubInfo.avatar_url} />
 					<Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -261,6 +296,9 @@ let App = ({ githubInfo, githubRepositories }) => {
 App.propTypes = {
 	githubInfo: PropTypes.object,
 	githubRepositories: PropTypes.array,
+	gpgKeys: PropTypes.array,
+	gpgModalOpen: PropTypes.bool,
+	toggleGPGModal: PropTypes.func,
 	anchorEl: PropTypes.object,
 	handleLanguageClick: PropTypes.func,
 	handleClose: PropTypes.func
