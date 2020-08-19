@@ -156,6 +156,11 @@ let App = ({ githubInfo, githubRepositories, gpgKeys, gpgModalOpen, toggleGPGMod
 		}
 	})
 
+	const dateCreated = new Date(Date.parse(githubInfo.created_at))
+	const today = new Date()
+	const diff = Math.abs(today - dateCreated)
+	const diffYears = Math.ceil(diff / (1000 * 60 * 60 * 24 * 365)) 
+	
 	return(
 		<Grid container component="main" className={classes.root}>
 			<CssBaseline />
@@ -211,7 +216,7 @@ let App = ({ githubInfo, githubRepositories, gpgKeys, gpgModalOpen, toggleGPGMod
 						{home.sub}
 					</Typography>
 					<Typography align="center" color="textSecondary" component="p">
-						{home.description}
+						{`${home.description[0]} ${diffYears} ${home.description[1]}`}
 					</Typography>
 				</Container>
 				<Container maxWidth="md">
