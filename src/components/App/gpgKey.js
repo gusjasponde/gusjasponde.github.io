@@ -41,15 +41,23 @@ let GpgKey = ({ gpg }) => {
 	let text = t('home.sections.gpg')
 
 	const classes = useStyles()
-
 	const textAreaRef = React.useRef(null)
-	function copyToClipboard(e) {
+
+	const copyToClipboard = (e) => {
 		textAreaRef.current.select()
 		document.execCommand('copy')
-		// This is just personal preference.
-		// I prefer to not show the whole text area selected.
 		e.target.focus()
 	}
+
+	const downloadTxtFile = (gpg) => {
+		const element = document.createElement('a')
+		const file = new Blob([textAreaRef.current.value], {type: 'text/plain'})
+		element.href = URL.createObjectURL(file)
+		element.download = `${gpg.id}.asc`
+		document.body.appendChild(element) // Required for this to work in FireFox
+		element.click()
+	}
+ 
 
 	return (
 		<Card className={classes.card}>
@@ -71,7 +79,7 @@ let GpgKey = ({ gpg }) => {
 					<Typography variant='textSecondary'>{text.copy}</Typography>
 					<FileCopyIcon style={{ marginLeft: '12px'}}/>
 				</Button>
-				<Button fullWidth color="textPrimary" id="download-gpg-key" style={{ margin: '10px'}}>
+				<Button fullWidth color="textPrimary" id="download-gpg-key" style={{ margin: '10px'}} onClick={() => downloadTxtFile(gpg)}>
 					<Typography variant='textSecondary'>{text.download}</Typography>
 					<GetAppIcon style={{ marginLeft: '12px'}}/>
 				</Button>
