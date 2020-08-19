@@ -2,11 +2,16 @@
     "home" : {
         "name" : "Gustavo Calonico", 
         "sub" : "Engenheiro de Software no Rio de Janeiro, Brasil",
-        "description": "Desenvolvedor/Engenheiro de software não graduado com 3 anos de experiência na área. Apaixonado por software livre e open-source, tecnologias descentralizadas e programação. Músico e baterista no meu tempo livre.",
+        "description": ["Desenvolvedor/Engenheiro de software não graduado com", "3 anos de experiência na área. Apaixonado por software livre e open-source, tecnologias descentralizadas e programação. Músico e baterista no meu tempo livre."],
         "sections" : {
             "projects": "Projetos",
             "language": "Idioma",
-            "gpg" : "PGP"
+            "gpg" : {
+                "name": "GPG",
+                "copy": "Copiar",
+                "download": "Baixar",
+                "expired" : "(expirada)"
+            }
         },
         "footer" : {
             "contact" : "Contato",
@@ -15,7 +20,8 @@
     },
     "error" : { 
         "githubInfo": "Erro ao carregar informações do Github",
-        "githubRepos": "Error ao carregar repositórios do Github"
+        "githubRepos": "Error ao carregar repositórios do Github",
+        "githubGpg": "Erro ao carregar as chaves GPG"
     },
     "languages": [
         { "key": "pt-br", "name": "Português (Brasil)"       },

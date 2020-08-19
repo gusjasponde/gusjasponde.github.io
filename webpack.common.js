@@ -1,7 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
 	entry: {
@@ -22,10 +21,7 @@ module.exports = {
 		}),
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		new webpack.NoEmitOnErrorsPlugin(),
-		new CopyWebpackPlugin([
-			{ from: 'gusjasponde.asc' }
-		])
+		new webpack.NoEmitOnErrorsPlugin()
 	],
 	module: {
 		rules: [

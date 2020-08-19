@@ -8,7 +8,8 @@ describe('githubReducer', () => {
 	it('should reduce load repositories in background', () => {
 		const previousState = {
 			repositories: [],
-			info: {}
+			info: {},
+			gpgKeys: []
 		}
 		const dispatch = {
 			type: constants.GITHUB_REPOS_LOAD_SUCCESS,
@@ -21,7 +22,8 @@ describe('githubReducer', () => {
 	it('should reduce load info in background', () => {
 		const previousState = {
 			repositories: [],
-			info: 'oldInfo'
+			info: 'oldInfo',
+			gpgKeys: []
 		}
 		const dispatch = {
 			type: constants.GITHUB_INFO_LOAD_SUCCESS,
@@ -31,15 +33,31 @@ describe('githubReducer', () => {
 		expect(result.info).to.be.deep.equal('newInfo')
 	})
 
+	it('should reduce load gpg keys in background', () => {
+		const previousState = {
+			repositories: [],
+			info: 'oldInfo',
+			keys: []
+		}
+		const dispatch = {
+			type: constants.GITHUB_GPG_LOAD_SUCCESS,
+			keys: ['key1', 'key2'],
+		}
+		const result = githubReducer(previousState, dispatch)
+		expect(result.keys).to.be.deep.equal(['key1', 'key2'])
+	})
+
 	it('should reduce to previous state correctly', () => {
 		const previousState = {
 			repositories: ['oldState'],
-			info: { 'info' : 'info'}
+			info: { 'info' : 'info'},
+			keys: ['key1', 'key2']
 		}
 		const dispatch = {
 			type: 'someOtherType',
 			repositories: ['newState'],
-			info: {}
+			info: {},
+			keys:	['key3']
 		}
 		const result = githubReducer(previousState, dispatch)
 		expect(result).to.be.equal(previousState)
