@@ -24,7 +24,19 @@ function setup() {
 			'email': 'email',
 			'blog': 'blog',
 			'html_url': 'html_url'
-		}
+		},
+		gpgKeys: [{
+			'key_id': 0,
+			'raw_key': 'fjksal',
+			'emails': [
+				{
+					'email': 'mail',
+					'verified': true
+				}
+			]
+		}],
+		gpgModalOpen: false,
+		toggleGPGModal: () => {}
 	}
 	return shallow(<App {...props} />)
 }
