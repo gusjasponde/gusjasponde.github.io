@@ -269,7 +269,7 @@ let App = ({ githubInfo, githubRepositories, gpgKeys, gpgModalOpen, toggleGPGMod
 								{home.footer.contact}
 							</Typography>
 							<ul>
-								<Link href={`mailto:${githubInfo.email}`} target="_blank" rel="noopener" color="textPrimary">
+								<Link href={'mailto:gusjasponde@protonmail.com'} target="_blank" rel="noopener" color="textPrimary">
 									<MailIcon className={classes.icon}/>
 								</Link>
 							</ul>
@@ -279,7 +279,7 @@ let App = ({ githubInfo, githubRepositories, gpgKeys, gpgModalOpen, toggleGPGMod
 								{home.footer.media}
 							</Typography>
 							<ul>
-								<Link href={`https://${githubInfo.blog}`} target="_blank" rel="noopener" color="textPrimary">
+								<Link href={'https://www.linkedin.com/in/gusjasponde/'} target="_blank" rel="noopener" color="textPrimary">
 									<LinkedInIcon className={classes.icon}/>
 								</Link>
 								<Link href={githubInfo.html_url} target="_blank" rel="noopener" color="textPrimary">
