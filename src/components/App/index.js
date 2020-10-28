@@ -15,14 +15,13 @@ import Link from '@material-ui/core/Link'
 import Container from '@material-ui/core/Container'
 import Box from '@material-ui/core/Box'
 import GitHubIcon from '@material-ui/icons/GitHub'
-import MailIcon from '@material-ui/icons/Mail'
-import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import Avatar from '@material-ui/core/Avatar'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import Dialog from '@material-ui/core/Dialog'
 import { makeStyles } from '@material-ui/core/styles'
 import { useTranslation } from 'react-i18next'
+import { SiLinkedin, SiProtonmail, SiMedium, SiTelegram, SiGithub, SiPluralsight, SiStackoverflow } from 'react-icons/si'
 import i18n from 'i18next'
 import GpgKey from './gpgKey'
 
@@ -270,7 +269,10 @@ let App = ({ githubInfo, githubRepositories, gpgKeys, gpgModalOpen, toggleGPGMod
 							</Typography>
 							<ul>
 								<Link href={'mailto:gusjasponde@protonmail.com'} target="_blank" rel="noopener" color="textPrimary">
-									<MailIcon className={classes.icon}/>
+									<SiProtonmail className={classes.icon}/>
+								</Link>
+								<Link href={'https://t.me/gusjasponde'} target="_blank" rel="noopener" color="textPrimary">
+									<SiTelegram className={classes.icon}/>
 								</Link>
 							</ul>
 						</Grid>
@@ -280,10 +282,19 @@ let App = ({ githubInfo, githubRepositories, gpgKeys, gpgModalOpen, toggleGPGMod
 							</Typography>
 							<ul>
 								<Link href={'https://www.linkedin.com/in/gusjasponde/'} target="_blank" rel="noopener" color="textPrimary">
-									<LinkedInIcon className={classes.icon}/>
+									<SiLinkedin className={classes.icon}/>
+								</Link>
+								<Link href={'https://medium.com/@gusjasponde'} target="_blank" rel="noopener" color="textPrimary">
+									<SiMedium className={classes.icon}/>
 								</Link>
 								<Link href={githubInfo.html_url} target="_blank" rel="noopener" color="textPrimary">
-									<GitHubIcon className={classes.icon}/>
+									<SiGithub className={classes.icon}/>
+								</Link>
+								<Link href={'https://stackoverflow.com/users/9549787/gustavo-calonico'} target="_blank" rel="noopener" color="textPrimary">
+									<SiStackoverflow className={classes.icon}/>
+								</Link>
+								<Link href={'https://app.pluralsight.com/profile/gusjasponde'} target="_blank" rel="noopener" color="textPrimary">
+									<SiPluralsight className={classes.icon}/>
 								</Link>
 							</ul>
 						</Grid>
